@@ -1,0 +1,8 @@
+.profile__text-area {
+    max-width: 336px;
+    display: grid;
+    grid-template-columns: repeat(2, max-content);
+    grid-template-rows: max-content max-content;
+    gap: 8px 18px;
+    align-content: center;
+}
