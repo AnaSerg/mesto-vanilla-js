@@ -6,3 +6,10 @@
     gap: 8px 18px;
     align-content: center;
 }
+
+@media screen and (max-width: 320px) {
+    .profile__text-area {
+        padding-left: 45px;
+        gap: 7.5px 10px;
+    }
+}
