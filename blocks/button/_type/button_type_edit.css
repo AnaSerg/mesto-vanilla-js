@@ -4,4 +4,10 @@
     background: url(../../../images/Edit-button.svg) center no-repeat #000;
     border: 1px solid #fff;
     align-self: baseline;
+    cursor: pointer;
+    transition: opacity .3s;
+}
+
+.button_type_edit:hover {
+    opacity: .6;
 }
