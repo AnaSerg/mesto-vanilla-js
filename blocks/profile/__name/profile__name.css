@@ -6,7 +6,7 @@
     align-self: baseline;
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 550px) {
     .profile__name {
         font-size: 27px;
         text-align: center;

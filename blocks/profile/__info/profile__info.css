@@ -3,9 +3,14 @@
     display: flex;
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 940px) {
+    .profile__info {
+        margin-bottom: 36px;
+    }
+}
+
+@media screen and (max-width: 550px) {
     .profile__info {
         flex-direction: column;
-        margin-bottom: 36px;
     }
 }
