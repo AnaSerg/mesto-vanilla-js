@@ -1,5 +1,5 @@
 .elements {
-    margin: 0 auto;
+    margin: 0 auto 66px;
     max-width: 880px;
 }
 
@@ -11,6 +11,7 @@
 
 @media screen and (max-width: 650px) {
     .elements {
+        margin-bottom: 48px;
         max-width: 282px;
     }
 }
