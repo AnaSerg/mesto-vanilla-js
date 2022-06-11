@@ -1,0 +1,13 @@
+.popup__container {
+    display: grid;
+    grid-template-columns: repeat(2, max-content);
+    gap: 8px;
+}
+
+@media screen and (max-width: 560px) {
+    .popup__container {
+        grid-template-columns: 100%;
+        gap: 16px;
+        max-width: calc(100% - 2*19px);
+    }
+}

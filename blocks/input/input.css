@@ -1,0 +1,15 @@
+.input {
+    border: none;
+    box-sizing: border-box;
+    padding: 0 0 12px;
+    margin-bottom: 29px;
+    border-bottom: 1px solid rgba(0, 0, 0, .2);
+    color: #000;
+    font-size: 14px;
+    font-weight: 400;
+    outline: none;
+}
+
+.input:last-of-type {
+    margin-bottom: 43px;
+}

@@ -9,6 +9,19 @@
 </head>
 <body class="page">
     <div class="page__container">
+        <div class="popup">
+            <div class="popup__container">
+                <button class="button button_type_close"></button>
+                <div class="popup__field">
+                    <form action="" class="form">
+                        <h1 class="form__title">Редактировать профиль</h1>
+                        <input type="text" class=" input input_type_name" value="Жак-Ив Кусто" placeholder="Имя">
+                        <input type="text" class=" input input_type_job" value="Исследователь океана" placeholder="О себе">
+                        <button class="button button_type_submit" type="submit">Сохранить</button>
+                    </form>
+                </div>
+            </div>
+        </div>
         <header class="header">
             <img src="./images/logo.svg" alt="логотип" class="header__logo">
         </header>
@@ -31,42 +44,42 @@
                         <img src="./images/Amsterdam.jpg" alt="Амстердам" class="element__image">
                         <div class="element__description">
                             <h2 class="element__text">Амстердам</h2>
-                            <img src="./images/Like-icon.svg" alt="иконка лайка" class="element__like">
+                            <button class="element__like"></button>
                         </div>
                     </li>
                     <li class="element">
                         <img src="./images/Berlin.jpg" alt="Берлин" class="element__image">
                         <div class="element__description">
                             <h2 class="element__text">Берлин</h2>
-                            <img src="./images/Like-icon.svg" alt="иконка лайка" class="element__like">
+                            <button class="element__like"></button>
                         </div>
                     </li>
                     <li class="element">
                         <img src="./images/Lagos.jpg" alt="Лагос" class="element__image">
                         <div class="element__description">
                             <h2 class="element__text">Лагос</h2>
-                            <img src="./images/Like-icon.svg" alt="иконка лайка" class="element__like">
+                            <button class="element__like"></button>
                         </div>
                     </li>
                     <li class="element">
                         <img src="./images/London.jpg" alt="Лондон" class="element__image">
                         <div class="element__description">
                             <h2 class="element__text">Лондон</h2>
-                            <img src="./images/Like-icon.svg" alt="иконка лайка" class="element__like">
+                            <button class="element__like"></button>
                         </div>
                     </li>
                     <li class="element">
                         <img src="./images/NY.jpg" alt="Нью-Йорк" class="element__image">
                         <div class="element__description">
                             <h2 class="element__text">Нью-Йорк</h2>
-                            <img src="./images/Like-icon.svg" alt="иконка лайка" class="element__like">
+                            <button class="element__like"></button>
                         </div>
                     </li>
                     <li class="element">
                         <img src="./images/Venice.jpg" alt="Венеция" class="element__image">
                         <div class="element__description">
                             <h2 class="element__text">Венеция</h2>
-                            <img src="./images/Like-icon.svg" alt="иконка лайка" class="element__like">
+                            <button class="element__like"></button>
                         </div>
                     </li>
                 </ul>
@@ -76,5 +89,6 @@
             <p class="footer__text">&copy; 2020 Mesto Russia</p>
         </footer>
     </div>
+    <script src="./index.js"></script>
 </body>
 </html>

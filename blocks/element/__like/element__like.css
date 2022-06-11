@@ -1,4 +1,16 @@
-.element__Like {
+.element__like {
+    border: none;
+    background: url(../../../images/Like-icon.svg) center no-repeat;
     width: 22px;
     height: 19px;
+    transition: opacity .3s;
+}
+
+.element__like:hover {
+    opacity: .5;
+}
+
+.element__like:active {
+    background: url(../../../images/like-icob_active.svg) center no-repeat;
+    opacity: 1;
 }

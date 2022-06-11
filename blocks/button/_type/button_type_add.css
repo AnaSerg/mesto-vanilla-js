@@ -4,8 +4,6 @@
     border: 2px solid #fff;
     background: url(../../../images/Add-button.svg) center no-repeat #000;
     align-self: center;
-    cursor: pointer;
-    transition: opacity .3s;
 }
 
 .button_type_add:hover {
