@@ -1,4 +1,6 @@
 .button_type_submit {
+    height: 50px;
+    max-width: 100%;
     padding: 0;
     border: none;
     background: #000;

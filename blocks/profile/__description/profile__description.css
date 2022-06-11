@@ -2,6 +2,8 @@
     margin: 0;
     font-size: 18px;
     font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 @media screen and (max-width: 550px) {

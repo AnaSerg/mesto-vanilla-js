@@ -4,6 +4,8 @@
     font-weight: 500;
     line-height: 1.14;
     align-self: baseline;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 @media screen and (max-width: 550px) {
