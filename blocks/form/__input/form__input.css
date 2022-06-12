@@ -1,4 +1,4 @@
-.input {
+.form__input {
     border: none;
     box-sizing: border-box;
     padding: 0 0 13px;
@@ -10,6 +10,6 @@
     outline: none;
 }
 
-.input:last-of-type {
+.form__input:last-of-type {
     margin-bottom: 43px;
 }

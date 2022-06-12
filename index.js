@@ -2,8 +2,8 @@ const popup = document.querySelector('.popup');
 const editBtn = document.querySelector('.button_type_edit');
 const closeBtn = document.querySelector('.button_type_close');
 let formElement = document.querySelector('.form');
-let nameInput = document.querySelector('.input_type_name');
-let jobInput = document.querySelector('.input_type_job');
+let nameInput = document.querySelector('.form__input_type_name');
+let jobInput = document.querySelector('.form__input_type_job');
 
 editBtn.addEventListener('click', () => {
     popup.classList.add('popup_opened');
