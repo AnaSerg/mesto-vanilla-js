@@ -1,9 +1,6 @@
 .element__description {
     display: flex;
+    max-width: 246px;
     justify-content: space-between;
-    align-items: center;
-    padding: 0 21px;
-    min-height: calc(100% - 282px);
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+    margin: 25px 20px 31px 21px;
 }
