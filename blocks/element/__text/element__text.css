@@ -2,6 +2,7 @@
     margin: 0;
     font-size: 24px;
     font-weight: 900;
+    max-width: 90%;
     color: #000;
     text-overflow: ellipsis;
     white-space: nowrap;
