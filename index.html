@@ -27,6 +27,7 @@
 
             <section class="elements">
                 <ul class="elements-list">
+                <!--
                     <li class="element">
                         <img src="./images/Amsterdam.jpg" alt="Амстердам" class="element__image">
                         <div class="element__description">
@@ -69,9 +70,13 @@
                             <button class="element__like" type="button"></button>
                         </div>
                     </li>
+                -->
                 </ul>
             </section>
-            <div class="popup">
+
+            <!-- Попапы -->
+
+            <div class="popup popup_type_edit">
                 <div class="popup__container">
                     <button class="button button_type_close" type="button" aria-label="Закрыть попап без сохранения изменений"></button>
                     <form action="#" method="POST" name="profileForm" class="form">
@@ -79,6 +84,18 @@
                         <input name="userName" type="text" class=" form__input form__input_type_name" placeholder="Имя">
                         <input name="job" type="text" class=" form__input form__input_type_job" placeholder="О себе">
                         <button class="button button_type_submit" type="submit">Сохранить</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="popup popup_type_add">
+                <div class="popup__container">
+                    <button class="button button_type_close" type="button" aria-label="Закрыть попап без сохранения изменений"></button>
+                    <form action="#" method="POST" name="addCard" class="form">
+                        <h2 class="form__title">Новое место</h2>
+                        <input name="placeName" type="text" class=" form__input" placeholder="Название">
+                        <input name="placeLink" type="text" class=" form__input" placeholder="Ссылка на картинку">
+                        <button class="button button_type_submit" type="submit">Создать</button>
                     </form>
                 </div>
             </div>
