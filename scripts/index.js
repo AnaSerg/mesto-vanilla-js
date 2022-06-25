@@ -8,9 +8,13 @@ const addBtn = document.querySelector('.button_type_add');
 const closeBtn = document.querySelectorAll('.button_type_close');
 
 // объявляем переменные для элементов формы
-const formElement = document.querySelector('.form_type_edit');
-let nameInput = formElement.querySelector('.form__input_type_name');
-let jobInput = formElement.querySelector('.form__input_type_job');
+const formElementEdit = document.querySelector('.form_type_edit');
+let nameInput = formElementEdit.querySelector('.form__input_type_name');
+let jobInput = formElementEdit.querySelector('.form__input_type_job');
+
+const formElementAdd = document.querySelector('.form_type_add');
+let textInput = formElementAdd.querySelector('.form__input_type_text');
+let imageInput = formElementAdd.querySelector('.form__input_type_image');
 
 // объявляем переменные для элементов данных пользователя
 const profile = document.querySelector('.profile');
@@ -48,7 +52,7 @@ const initialCards = [
     }
   ]; 
 
-initialCards.forEach(function (el) {
+initialCards.forEach(el => {
     const element = elementTemplate.cloneNode(true);
     element.querySelector('.element__text').textContent = el.name;
     element.querySelector('.element__image').src = el.link;
@@ -83,12 +87,36 @@ closeBtn.forEach(item => {
 });
 
 // функция сохранения введенных данных профиля в попап
-function submitForm (evt) {
+function submitFormEdit (evt) {
     evt.preventDefault(); 
     profileJob.textContent = jobInput.value;
     profileName.textContent = nameInput.value;
     popupEdit.classList.remove('popup_opened');
 }
 
-formElement.addEventListener('submit', submitForm); 
+formElementEdit.addEventListener('submit', submitFormEdit); 
+
+    
+
+// добавление новой карточки
+
+// отрисовка новой карточки, добавленной из формы
+const renderCard = ({name, link}) => {
+    const element = elementTemplate.cloneNode(true);
+    element.querySelector('.element__text').textContent = name;
+    element.querySelector('.element__image').src = link;
+
+    elementsList.prepend(element);
+};
+
+function submitFormAdd (evt) {
+    evt.preventDefault();
+    popupAdd.classList.remove('popup_opened');
+    renderCard({name: `${textInput.value}`, link: `${imageInput.value}`});
+    formElementAdd.reset();
+}
+
+formElementAdd.addEventListener('submit', submitFormAdd);
+
+
 
