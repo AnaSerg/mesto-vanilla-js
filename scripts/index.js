@@ -6,6 +6,7 @@ const popupAdd = document.querySelector('.popup_type_add');
 const editBtn = document.querySelector('.button_type_edit');
 const addBtn = document.querySelector('.button_type_add');
 const closeBtn = document.querySelectorAll('.button_type_close');
+const likeBtn = document.querySelector
 
 // объявляем переменные для элементов формы
 const formElementEdit = document.querySelector('.form_type_edit');
@@ -56,6 +57,9 @@ initialCards.forEach(el => {
     const element = elementTemplate.cloneNode(true);
     element.querySelector('.element__text').textContent = el.name;
     element.querySelector('.element__image').src = el.link;
+    element.querySelector('.element__like').addEventListener('click', function (evt) {
+        evt.target.classList.toggle('element__like_active');
+    });
 
     elementsList.append(element);
 });
@@ -105,6 +109,9 @@ const renderCard = ({name, link}) => {
     const element = elementTemplate.cloneNode(true);
     element.querySelector('.element__text').textContent = name;
     element.querySelector('.element__image').src = link;
+    element.querySelector('.element__like').addEventListener('click', function (evt) {
+        evt.target.classList.toggle('element__like_active');
+    });
 
     elementsList.prepend(element);
 };
@@ -117,6 +124,3 @@ function submitFormAdd (evt) {
 }
 
 formElementAdd.addEventListener('submit', submitFormAdd);
-
-
-
