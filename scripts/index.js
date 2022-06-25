@@ -6,7 +6,6 @@ const popupAdd = document.querySelector('.popup_type_add');
 const editBtn = document.querySelector('.button_type_edit');
 const addBtn = document.querySelector('.button_type_add');
 const closeBtn = document.querySelectorAll('.button_type_close');
-const likeBtn = document.querySelector
 
 // объявляем переменные для элементов формы
 const formElementEdit = document.querySelector('.form_type_edit');
@@ -124,3 +123,12 @@ function submitFormAdd (evt) {
 }
 
 formElementAdd.addEventListener('submit', submitFormAdd);
+
+const deleteBtn = document.querySelectorAll('.element__delete-button');
+console.log(deleteBtn);
+deleteBtn.forEach(item => {
+    item.addEventListener('click', function (event) {
+        const card = event.target.closest('.element');
+        card.remove();
+    });
+});
