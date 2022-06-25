@@ -26,52 +26,7 @@
             </section>
 
             <section class="elements">
-                <ul class="elements-list">
-                <!--
-                    <li class="element">
-                        <img src="./images/Amsterdam.jpg" alt="Амстердам" class="element__image">
-                        <div class="element__description">
-                            <h2 class="element__text">Амстердам</h2>
-                            <button class="element__like" type="button"></button>
-                        </div>
-                    </li>
-                    <li class="element">
-                        <img src="./images/Berlin.jpg" alt="Берлин" class="element__image">
-                        <div class="element__description">
-                            <h2 class="element__text">Берлин</h2>
-                            <button class="element__like" type="button"></button>
-                        </div>
-                    </li>
-                    <li class="element">
-                        <img src="./images/Lagos.jpg" alt="Лагос" class="element__image">
-                        <div class="element__description">
-                            <h2 class="element__text">Лагос</h2>
-                            <button class="element__like" type="button"></button>
-                        </div>
-                    </li>
-                    <li class="element">
-                        <img src="./images/London.jpg" alt="Лондон" class="element__image">
-                        <div class="element__description">
-                            <h2 class="element__text">Лондон</h2>
-                            <button class="element__like" type="button"></button>
-                        </div>
-                    </li>
-                    <li class="element">
-                        <img src="./images/NY.jpg" alt="Нью-Йорк" class="element__image">
-                        <div class="element__description">
-                            <h2 class="element__text">Нью-Йорк</h2>
-                            <button class="element__like" type="button"></button>
-                        </div>
-                    </li>
-                    <li class="element">
-                        <img src="./images/Venice.jpg" alt="Венеция" class="element__image">
-                        <div class="element__description">
-                            <h2 class="element__text">Венеция</h2>
-                            <button class="element__like" type="button"></button>
-                        </div>
-                    </li>
-                -->
-                </ul>
+                <ul class="elements-list"></ul>
             </section>
 
             <!-- Попапы -->
@@ -79,7 +34,7 @@
             <div class="popup popup_type_edit">
                 <div class="popup__container">
                     <button class="button button_type_close" type="button" aria-label="Закрыть попап без сохранения изменений"></button>
-                    <form action="#" method="POST" name="profileForm" class="form">
+                    <form action="#" method="POST" name="profileForm" class="form form_type_edit">
                         <h2 class="form__title">Редактировать профиль</h2>
                         <input name="userName" type="text" class=" form__input form__input_type_name" placeholder="Имя">
                         <input name="job" type="text" class=" form__input form__input_type_job" placeholder="О себе">
@@ -91,10 +46,10 @@
             <div class="popup popup_type_add">
                 <div class="popup__container">
                     <button class="button button_type_close" type="button" aria-label="Закрыть попап без сохранения изменений"></button>
-                    <form action="#" method="POST" name="addCard" class="form">
+                    <form action="#" method="POST" name="addCard" class="form form_type_add">
                         <h2 class="form__title">Новое место</h2>
-                        <input name="placeName" type="text" class=" form__input" placeholder="Название">
-                        <input name="placeLink" type="text" class=" form__input" placeholder="Ссылка на картинку">
+                        <input name="placeName" type="text" class=" form__input form__input_type_text" placeholder="Название">
+                        <input name="placeLink" type="text" class=" form__input form__input_type_image" placeholder="Ссылка на картинку">
                         <button class="button button_type_submit" type="submit">Создать</button>
                     </form>
                 </div>
@@ -104,6 +59,15 @@
             <p class="footer__text">&copy; 2020 Mesto Russia</p>
         </footer>
     </div>
+    <template class="elements-template">
+        <li class="element">
+            <img src="" class="element__image">
+            <div class="element__description">
+                <h2 class="element__text"></h2>
+                <button class="element__like" type="button"></button>
+            </div>
+        </li>
+    </template>
     <script src="./scripts/index.js"></script>
 </body>
 </html>
