@@ -7,7 +7,7 @@ const editBtn = document.querySelector('.button_type_edit');
 const addBtn = document.querySelector('.button_type_add');
 const closeBtn = document.querySelectorAll('.button_type_close');
 
-// объявляем переменные для элементов формы
+// элементы формы
 const formElementEdit = document.querySelector('.form_type_edit');
 let nameInput = formElementEdit.querySelector('.form__input_type_name');
 let jobInput = formElementEdit.querySelector('.form__input_type_job');
@@ -16,14 +16,10 @@ const formElementAdd = document.querySelector('.form_type_add');
 let textInput = formElementAdd.querySelector('.form__input_type_text');
 let imageInput = formElementAdd.querySelector('.form__input_type_image');
 
-// объявляем переменные для элементов данных пользователя
+// элементы данных пользователя
 const profile = document.querySelector('.profile');
 let profileJob = profile.querySelector('.profile__description');
 let profileName = profile.querySelector('.profile__name');
-
-// массив с карточками и добавление карточек при загрузке страницы
-const elementsList = document.querySelector('.elements-list');
-const elementTemplate = document.querySelector('.elements-template').content;
 
 const initialCards = [
     {
@@ -52,18 +48,43 @@ const initialCards = [
     }
   ]; 
 
-initialCards.forEach(el => {
+// добавление карточек на страницу
+const elementsList = document.querySelector('.elements-list');
+const elementTemplate = document.querySelector('.elements-template').content;
+
+const renderCards = () => {
+    initialCards.forEach(renderCard);
+};
+
+const renderCard = ({name, link}) => {
+    
+    // отрисовка карточки и лайк
     const element = elementTemplate.cloneNode(true);
-    element.querySelector('.element__text').textContent = el.name;
-    element.querySelector('.element__image').src = el.link;
+    element.querySelector('.element__text').textContent = name;
+    element.querySelector('.element__image').src = link;
     element.querySelector('.element__like').addEventListener('click', function (evt) {
         evt.target.classList.toggle('element__like_active');
     });
 
-    elementsList.append(element);
-});
+    elementsList.prepend(element);
+
+    // удаление карточки
+    const deleteBtn = document.querySelectorAll('.element__delete-button');
+    console.log(deleteBtn);
+    deleteBtn.forEach(item => {
+        item.addEventListener('click', function (event) {
+            const card = event.target.closest('.element');
+            card.remove();
+    });
+    });
+
+    return element;
+};
+
+renderCards();
 
 // открытие попапов
+
 const openPopup = (popup) => {
     popup.classList.add('popup_opened');
 };
@@ -82,6 +103,7 @@ editBtn.addEventListener('click', handleEditProfile);
 addBtn.addEventListener('click', addCard);
 
 // закрытие попапов
+
 closeBtn.forEach(item => {
     item.addEventListener('click', function (event) {
         const popup = event.target.closest('.popup_opened');
@@ -89,7 +111,8 @@ closeBtn.forEach(item => {
     });
 });
 
-// функция сохранения введенных данных профиля в попап
+// сохранение данных, введенных в формы
+
 function submitFormEdit (evt) {
     evt.preventDefault(); 
     profileJob.textContent = jobInput.value;
@@ -98,22 +121,6 @@ function submitFormEdit (evt) {
 }
 
 formElementEdit.addEventListener('submit', submitFormEdit); 
-
-    
-
-// добавление новой карточки
-
-// отрисовка новой карточки, добавленной из формы
-const renderCard = ({name, link}) => {
-    const element = elementTemplate.cloneNode(true);
-    element.querySelector('.element__text').textContent = name;
-    element.querySelector('.element__image').src = link;
-    element.querySelector('.element__like').addEventListener('click', function (evt) {
-        evt.target.classList.toggle('element__like_active');
-    });
-
-    elementsList.prepend(element);
-};
 
 function submitFormAdd (evt) {
     evt.preventDefault();
@@ -124,11 +131,4 @@ function submitFormAdd (evt) {
 
 formElementAdd.addEventListener('submit', submitFormAdd);
 
-const deleteBtn = document.querySelectorAll('.element__delete-button');
-console.log(deleteBtn);
-deleteBtn.forEach(item => {
-    item.addEventListener('click', function (event) {
-        const card = event.target.closest('.element');
-        card.remove();
-    });
-});
+
