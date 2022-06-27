@@ -1,6 +1,7 @@
 // попапы
 const popupEdit = document.querySelector('.popup_type_edit');
 const popupAdd = document.querySelector('.popup_type_add');
+const popupImage = document.querySelector('.popup_type_big-image');
 
 // кнопки
 const editBtn = document.querySelector('.button_type_edit');
@@ -21,22 +22,26 @@ const profile = document.querySelector('.profile');
 let profileJob = profile.querySelector('.profile__description');
 let profileName = profile.querySelector('.profile__name');
 
+// элементы попапа увеличения картинок
+let image = document.querySelector('.popup__image');
+let imageDescription = document.querySelector('.popup__image-description');
+
 const initialCards = [
     {
       name: 'Нью-Йорк',
-      link: 'https://images.unsplash.com/photo-1562649375-10a87a607863?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTd8fGNpdGllcyUyMG5ldyUyMHlvcmt8ZW58MHwyfDB8fA%3D%3D&auto=format&fit=crop&w=800&q=60'
+      link: 'https://images.unsplash.com/photo-1634471696242-d447b79248a8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MzJ8fCVEMCVCRCVEMSU4QyVEMSU4RSUyMCVEMCVCOSVEMCVCRSVEMSU4MCVEMCVCQXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60'
     },
     {
       name: 'Барселона',
-      link: 'https://images.unsplash.com/photo-1622649440704-7f65fef23d25?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTV8fGNpdGllcyUyMHN0cmVldHN8ZW58MHwyfDB8fA%3D%3D&auto=format&fit=crop&w=800&q=60'
+      link: 'https://images.unsplash.com/photo-1511527661048-7fe73d85e9a4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8YmFyY2Vsb25hfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=800&q=60'
     },
     {
       name: 'Сан-Франциско',
-      link: 'https://images.unsplash.com/photo-1564508940884-2069e7943cc3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OXx8bW9zY293JTIwc3RyZWV0fGVufDB8MnwwfHw%3D&auto=format&fit=crop&w=800&q=60'
+      link: 'https://images.unsplash.com/photo-1521464302861-ce943915d1c3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8c2FuJTIwZnJhbmNpc2NvfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=800&q=60'
     },
     {
       name: 'Берлин',
-      link: 'https://images.unsplash.com/photo-1588344948644-097b9a9bc3c2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjB8fGJ1aWxkaW5ncyUyMGJlcmxpbnxlbnwwfDJ8MHx8&auto=format&fit=crop&w=800&q=60'
+      link: 'https://images.unsplash.com/photo-1560969184-10fe8719e047?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8YmVybGlufGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=800&q=60'
     },
     {
       name: 'Париж',
@@ -44,7 +49,7 @@ const initialCards = [
     },
     {
       name: 'Венеция',
-      link: 'https://images.unsplash.com/photo-1575971252847-77ade1fa4997?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8YnVpbGRpbmdzJTIwdmVuaWNlfGVufDB8MnwwfHw%3D&auto=format&fit=crop&w=800&q=60'
+      link: 'https://images.unsplash.com/photo-1601221018091-03efdfe0ba53?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NDJ8fCVEMCVCMiVEMCVCNSVEMCVCRCVEMCVCNSVEMSU4NiVEMCVCOCVEMSU4RnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60'
     }
   ]; 
 
@@ -59,26 +64,34 @@ const renderCards = () => {
 const renderCard = ({name, link}) => {
     
     // отрисовка карточки и лайк
+
     const element = elementTemplate.cloneNode(true);
     element.querySelector('.element__text').textContent = name;
     element.querySelector('.element__image').src = link;
     element.querySelector('.element__like').addEventListener('click', function (evt) {
         evt.target.classList.toggle('element__like_active');
     });
+    let imageBtn = element.querySelector('.element__image'); // обращение к картинке для увеличения
 
     elementsList.prepend(element);
 
     // удаление карточки
+
     const deleteBtn = document.querySelectorAll('.element__delete-button');
-    console.log(deleteBtn);
     deleteBtn.forEach(item => {
         item.addEventListener('click', function (event) {
             const card = event.target.closest('.element');
             card.remove();
-    });
+        });
     });
 
-    return element;
+    // увеличение картинки 
+
+    imageBtn.addEventListener('click', function () {
+        image.src = link;
+        imageDescription.textContent = name;
+        openPopup(popupImage);
+    });
 };
 
 renderCards();
