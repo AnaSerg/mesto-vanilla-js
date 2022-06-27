@@ -6,25 +6,25 @@ const popupImage = document.querySelector('.popup_type_big-image');
 // кнопки
 const editBtn = document.querySelector('.button_type_edit');
 const addBtn = document.querySelector('.button_type_add');
-const closeBtn = document.querySelectorAll('.button_type_close');
+const closeBtns = document.querySelectorAll('.button_type_close');
 
 // элементы формы
 const formElementEdit = document.querySelector('.form_type_edit');
-let nameInput = formElementEdit.querySelector('.form__input_type_name');
-let jobInput = formElementEdit.querySelector('.form__input_type_job');
+const nameInput = formElementEdit.querySelector('.form__input_type_name');
+const jobInput = formElementEdit.querySelector('.form__input_type_job');
 
 const formElementAdd = document.querySelector('.form_type_add');
-let textInput = formElementAdd.querySelector('.form__input_type_text');
-let imageInput = formElementAdd.querySelector('.form__input_type_image');
+const textInput = formElementAdd.querySelector('.form__input_type_text');
+const imageInput = formElementAdd.querySelector('.form__input_type_image');
 
 // элементы данных пользователя
 const profile = document.querySelector('.profile');
-let profileJob = profile.querySelector('.profile__description');
-let profileName = profile.querySelector('.profile__name');
+const profileJob = profile.querySelector('.profile__description');
+const profileName = profile.querySelector('.profile__name');
 
 // элементы попапа увеличения картинок
-let image = document.querySelector('.popup__image');
-let imageDescription = document.querySelector('.popup__image-description');
+const image = document.querySelector('.popup__image');
+const imageDescription = document.querySelector('.popup__image-description');
 
 const initialCards = [
     {
@@ -54,6 +54,7 @@ const initialCards = [
   ]; 
 
 // добавление карточек на страницу
+
 const elementsList = document.querySelector('.elements-list');
 const elementTemplate = document.querySelector('.elements-template').content;
 
@@ -61,37 +62,52 @@ const renderCards = () => {
     initialCards.forEach(renderCard);
 };
 
-const renderCard = ({name, link}) => {
-    
-    // отрисовка карточки и лайк
+// удаление карточки
 
-    const element = elementTemplate.cloneNode(true);
-    element.querySelector('.element__text').textContent = name;
-    element.querySelector('.element__image').src = link;
-    element.querySelector('.element__like').addEventListener('click', function (evt) {
-        evt.target.classList.toggle('element__like_active');
-    });
-    let imageBtn = element.querySelector('.element__image'); // обращение к картинке для увеличения
-
-    elementsList.prepend(element);
-
-    // удаление карточки
-
-    const deleteBtn = document.querySelectorAll('.element__delete-button');
-    deleteBtn.forEach(item => {
+const deleteCard = () => {
+    const deleteBtns = document.querySelectorAll('.element__delete-button');
+    deleteBtns.forEach(item => {
         item.addEventListener('click', function (event) {
             const card = event.target.closest('.element');
             card.remove();
         });
     });
+};
 
-    // увеличение картинки 
+// увеличение изображений
 
-    imageBtn.addEventListener('click', function () {
-        image.src = link;
-        imageDescription.textContent = name;
+const zoomImage = (imageLink, imageText, zoomBtn) => {
+    zoomBtn.addEventListener('click', function () {
+        image.src = imageLink;
+        imageDescription.textContent = imageText;
         openPopup(popupImage);
     });
+};
+
+// лайк на картинку
+
+const likeImage = (likeBtn) => {
+    likeBtn.addEventListener('click', function (evt) {
+        evt.target.classList.toggle('element__like_active');
+    });
+};
+
+// создание карточки
+
+const renderCard = ({name, link}) => {
+    const element = elementTemplate.cloneNode(true);
+    element.querySelector('.element__text').textContent = name;
+    element.querySelector('.element__image').src = link;
+    const imageBtn = element.querySelector('.element__image'); // обращение к картинке для увеличения
+    likeImage(element.querySelector('.element__like')); // лайк
+
+    elementsList.prepend(element);
+
+    deleteCard();
+
+    zoomImage(link, name, imageBtn);
+
+    return element;
 };
 
 renderCards();
@@ -117,10 +133,14 @@ addBtn.addEventListener('click', addCard);
 
 // закрытие попапов
 
-closeBtn.forEach(item => {
+const closePopup = (popup) => {
+    popup.classList.remove('popup_opened');
+};
+
+closeBtns.forEach(item => {
     item.addEventListener('click', function (event) {
-        const popup = event.target.closest('.popup_opened');
-        popup.classList.remove('popup_opened');
+        const eventTarget = event.target.closest('.popup_opened');
+        closePopup(eventTarget);
     });
 });
 
@@ -130,14 +150,14 @@ function submitFormEdit (evt) {
     evt.preventDefault(); 
     profileJob.textContent = jobInput.value;
     profileName.textContent = nameInput.value;
-    popupEdit.classList.remove('popup_opened');
+    closePopup(popupEdit);
 }
 
 formElementEdit.addEventListener('submit', submitFormEdit); 
 
 function submitFormAdd (evt) {
     evt.preventDefault();
-    popupAdd.classList.remove('popup_opened');
+    closePopup(popupAdd);
     renderCard({name: `${textInput.value}`, link: `${imageInput.value}`});
     formElementAdd.reset();
 }
