@@ -1,4 +1,5 @@
 // попапы
+const popups = document.querySelectorAll('.popup');
 const popupEdit = document.querySelector('.popup_type_edit');
 const popupAdd = document.querySelector('.popup_type_add');
 const popupImage = document.querySelector('.popup_type_big-image');
@@ -93,12 +94,14 @@ const openPopup = (popup) => {
 };
 
 const handleEditProfile = () => {
+    resetValidation(formElementEdit);
     openPopup(popupEdit);
     nameInput.value = profileName.textContent;
     jobInput.value = profileJob.textContent;
 };
 
 const openAddCardPopup = () => {
+    resetValidation(formElementAdd);
     openPopup(popupAdd);
 };
 
@@ -111,6 +114,25 @@ const closePopup = (popup) => {
     popup.classList.remove('popup_opened');
 };
 
+// закрыте по клику на оверлей
+popups.forEach((popup) => {
+    popup.addEventListener('click', function(evt) {
+        if(evt.target === evt.currentTarget) {
+            closePopup(evt.target);
+        }
+    });
+});
+
+// закрытие на Esc
+document.addEventListener('keydown', function(evt) {
+    popups.forEach((popup) => {
+        if(evt.key === 'Escape') {
+            closePopup(popup);
+        }
+    });
+});
+
+// закрытие по клику на кнопку
 closeBtns.forEach(item => {
     item.addEventListener('click', function (event) {
         const eventTarget = event.target.closest('.popup_opened');
@@ -137,5 +159,6 @@ function submitFormAdd (evt) {
 }
 
 formElementAdd.addEventListener('submit', submitFormAdd);
+
 
 

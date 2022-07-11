@@ -7,6 +7,7 @@
 @import url(../blocks/button/_type/button_type_add.css);
 @import url(../blocks/button/_type/button_type_submit.css);
 @import url(../blocks/button/_type/button_type_close.css);
+@import url(../blocks/button/_inactive/button_inactive.css);
 
 @import url(../blocks/header/header.css);
 @import url(../blocks/header/__logo/header__logo.css);
@@ -41,3 +42,7 @@
 @import url(../blocks/form/form.css);
 @import url(../blocks/form/__title/form__title.css);
 @import url(../blocks/form/__input/form__input.css);
+@import url(../blocks/form/__input/_type/form__input_type_error.css);
+
+@import url(../blocks/error/error.css);
+@import url(../blocks/error/_active/error_active.css);
