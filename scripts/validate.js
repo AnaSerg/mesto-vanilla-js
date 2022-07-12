@@ -48,6 +48,13 @@ const checkInputValidity = (formElement, inputElement, rest) => {
 // Если вводим несоответствующие данные в форму и закрываем попап. 
 // При следующем открытии форма очищается от ошибок.
 
+const disableButton = (formElement) => {
+    const button = formElement.querySelector('.button_type_submit');
+    console.log(button);
+    button.classList.add('button_inactive');
+    button.setAttribute('disabled', true);
+};
+
 const resetValidation = (formElement) => {
     const errorText = formElement.querySelectorAll('.error');
     const errorInput = formElement.querySelectorAll('.form__input');
@@ -57,7 +64,7 @@ const resetValidation = (formElement) => {
     errorText.forEach((error) => {
         error.textContent = '';
     });
-    formElement.reset();
+    disableButton(formElement);
 };
 
 const setEventListeners = (formElement, { inputSelector, submitButtonSelector, ...rest} ) => {
@@ -75,9 +82,6 @@ const setEventListeners = (formElement, { inputSelector, submitButtonSelector, .
 const enableValidation = ( { formSelector, ...rest } ) => {
     const formList = Array.from(document.querySelectorAll(formSelector));
     formList.forEach((formElement) => {
-        formElement.addEventListener('submit', (evt) => {
-            evt.preventDefault();
-        });
         setEventListeners(formElement, rest);
     });
 };
