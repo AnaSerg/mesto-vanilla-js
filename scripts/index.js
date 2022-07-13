@@ -89,19 +89,20 @@ renderCards();
 
 const openPopup = (popup) => {
     resetValidation(config);
-    disableButton(config);
     popup.classList.add('popup_opened');
     // закрытие на Esc
     document.addEventListener('keydown', closeByEsc);
 };
 
 const handleEditProfile = () => {
+    disableButton(config);
     openPopup(popupEdit);
     nameInput.value = profileName.textContent;
     jobInput.value = profileJob.textContent;
 };
 
 const openAddCardPopup = () => {
+    disableButton(config);
     formElementAdd.reset();
     openPopup(popupAdd);
 };
