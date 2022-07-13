@@ -88,6 +88,7 @@ renderCards();
 // открытие попапов
 
 const openPopup = (popup) => {
+    resetValidation(config);
     disableButton(config);
     popup.classList.add('popup_opened');
     // закрытие на Esc

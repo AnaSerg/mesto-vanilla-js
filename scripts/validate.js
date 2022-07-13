@@ -55,9 +55,16 @@ const checkInputValidity = (formElement, inputElement, rest) => {
     }
 };
 
-/*пока убрала эту функцию, так как не получается реализовать с новыми условиями, буду думать дальше
-const resetValidation = (config) => {
-}; */
+//reset инпутов в форме
+const resetValidation = ({ formSelector, inputSelector, ...rest} ) => {
+    const forms = Array.from(document.querySelectorAll(formSelector));
+    forms.forEach((formElement) => {
+        const inputs = Array.from(formElement.querySelectorAll(inputSelector));
+        inputs.forEach((inputElement) => {
+            hideInputError(formElement, inputElement, rest);
+        });
+    });
+}; 
 
 const setEventListeners = (formElement, { inputSelector, ...rest} ) => {
     const inputList = Array.from(formElement.querySelectorAll(inputSelector));
