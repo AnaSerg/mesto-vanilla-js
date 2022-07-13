@@ -74,12 +74,11 @@ const createCard = ({name, link}) => {
     elementImage.src = link;
     elementImage.alt = name;
     const buttonDelete = element.querySelector('.element__delete-button'); // обращение к кнопке удаления
-    const imageButton = element.querySelector('.element__image'); // обращение к картинке для увеличения
     const buttonLike = element.querySelector('.element__like'); // обращение к кнопке лайка
     
     buttonLike.addEventListener('click', likeImage);
     deleteCard(buttonDelete);
-    zoomImage(link, name, imageButton);
+    zoomImage(link, name, elementImage);
 
     return element;
 };
@@ -89,26 +88,19 @@ renderCards();
 // открытие попапов
 
 const openPopup = (popup) => {
+    disableButton(config);
     popup.classList.add('popup_opened');
     // закрытие на Esc
-    document.addEventListener('keydown', function(evt) {
-        popups.forEach((popup) => {
-            if(evt.key === 'Escape') {
-                closePopup(popup);
-            }
-        });
-    }); 
+    document.addEventListener('keydown', closeByEsc);
 };
 
 const handleEditProfile = () => {
-    resetValidation(formElementEdit);
     openPopup(popupEdit);
     nameInput.value = profileName.textContent;
     jobInput.value = profileJob.textContent;
 };
 
 const openAddCardPopup = () => {
-    resetValidation(formElementAdd);
     formElementAdd.reset();
     openPopup(popupAdd);
 };
@@ -120,14 +112,16 @@ buttonAdd.addEventListener('click', openAddCardPopup);
 
 const closePopup = (popup) => {
     popup.classList.remove('popup_opened');
-    document.removeEventListener('keydown', function(evt) {
-        popups.forEach((popup) => {
-            if(evt.key === 'Escape') {
-                closePopup(popup);
-            }
-        });
-    }); 
+    document.removeEventListener('keydown', closeByEsc);
 };
+
+// функция закрытия с Esc
+function closeByEsc(evt) {
+    if (evt.key === 'Escape') {
+        const openedPopup = document.querySelector('.popup_opened');
+        closePopup(openedPopup); 
+    }
+}  
 
 // закрыте по клику на оверлей
 popups.forEach((popup) => {

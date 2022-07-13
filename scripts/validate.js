@@ -12,15 +12,25 @@ const hasInvalidInput = (inputList) => {
       return !inputElement.validity.valid;
     });
 };
-  
-const toggleButtonState = (inputList, buttonElement, { inactiveButtonClass }, formElement) => {
-    if(hasInvalidInput(inputList)) {
-        buttonElement.classList.add(inactiveButtonClass);
-        buttonElement.setAttribute('disabled', true);
-    } else {
-        buttonElement.classList.remove(inactiveButtonClass);
-        buttonElement.removeAttribute('disabled');
-    } 
+
+const disableButton = ( { submitButtonSelector, inactiveButtonClass, ...rest }) => {
+    const buttons = Array.from(document.querySelectorAll(submitButtonSelector));
+    buttons.forEach((buttonElement) => {
+        buttonElement.classList.add(inactiveButtonClass); 
+        buttonElement.setAttribute('disabled', true); 
+    });
+};
+
+const toggleButtonState = (inputList, { submitButtonSelector, inactiveButtonClass, ...rest }) => {
+    const buttons = Array.from(document.querySelectorAll(submitButtonSelector));
+    buttons.forEach((buttonElement) => {
+        if(hasInvalidInput(inputList)) {
+            disableButton({ submitButtonSelector, inactiveButtonClass, rest });
+        } else {
+            buttonElement.classList.remove(inactiveButtonClass);
+            buttonElement.removeAttribute('disabled');
+        }
+    });
 };
 
 const showInputError = (formElement, inputElement, errorMessage, { inputErrorClass, errorClass }) => {
@@ -45,36 +55,17 @@ const checkInputValidity = (formElement, inputElement, rest) => {
     }
 };
 
-// Если вводим несоответствующие данные в форму и закрываем попап. 
-// При следующем открытии форма очищается от ошибок.
+/*пока убрала эту функцию, так как не получается реализовать с новыми условиями, буду думать дальше
+const resetValidation = (config) => {
+}; */
 
-const disableButton = (formElement) => {
-    const button = formElement.querySelector('.button_type_submit');
-    console.log(button);
-    button.classList.add('button_inactive');
-    button.setAttribute('disabled', true);
-};
-
-const resetValidation = (formElement) => {
-    const errorText = formElement.querySelectorAll('.error');
-    const errorInput = formElement.querySelectorAll('.form__input');
-    errorInput.forEach((input) => {
-        input.classList.remove('form__input_type_error');
-    });
-    errorText.forEach((error) => {
-        error.textContent = '';
-    });
-    disableButton(formElement);
-};
-
-const setEventListeners = (formElement, { inputSelector, submitButtonSelector, ...rest} ) => {
+const setEventListeners = (formElement, { inputSelector, ...rest} ) => {
     const inputList = Array.from(formElement.querySelectorAll(inputSelector));
-    const buttonElement = formElement.querySelector(submitButtonSelector);
-    toggleButtonState(inputList, buttonElement, rest);
+    toggleButtonState(inputList, rest);
     inputList.forEach((inputElement) => {
         inputElement.addEventListener('input', function () {
         checkInputValidity(formElement, inputElement, rest);
-        toggleButtonState(inputList, buttonElement, rest);
+        toggleButtonState(inputList, rest);
         });
     });
 };
