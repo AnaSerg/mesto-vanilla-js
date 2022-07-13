@@ -88,13 +88,13 @@ renderCards();
 // открытие попапов
 
 const openPopup = (popup) => {
-    resetValidation(config);
     popup.classList.add('popup_opened');
     // закрытие на Esc
     document.addEventListener('keydown', closeByEsc);
 };
 
 const handleEditProfile = () => {
+    resetValidation(config);
     disableButton(config);
     openPopup(popupEdit);
     nameInput.value = profileName.textContent;
@@ -102,6 +102,7 @@ const handleEditProfile = () => {
 };
 
 const openAddCardPopup = () => {
+    resetValidation(config);
     disableButton(config);
     formElementAdd.reset();
     openPopup(popupAdd);
