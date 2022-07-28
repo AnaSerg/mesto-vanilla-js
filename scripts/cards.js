@@ -1,4 +1,4 @@
-const initialCards = [
+export const initialCards = [
     {
       name: 'Нью-Йорк',
       link: 'https://images.unsplash.com/photo-1634471696242-d447b79248a8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MzJ8fCVEMCVCRCVEMSU4QyVEMSU4RSUyMCVEMCVCOSVEMCVCRSVEMSU4MCVEMCVCQXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60'
@@ -23,4 +23,4 @@ const initialCards = [
       name: 'Венеция',
       link: 'https://images.unsplash.com/photo-1601221018091-03efdfe0ba53?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NDJ8fCVEMCVCMiVEMCVCNSVEMCVCRCVEMCVCNSVEMSU4NiVEMCVCOCVEMSU4RnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60'
     }
-  ]; 
+];

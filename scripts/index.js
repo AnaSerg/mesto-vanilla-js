@@ -1,3 +1,6 @@
+import { Card } from './Сard.js';
+import { initialCards } from './cards.js';
+
 // попапы
 const popups = document.querySelectorAll('.popup');
 const popupEdit = document.querySelector('.popup_type_edit');
@@ -27,12 +30,16 @@ const profileName = profile.querySelector('.profile__name');
 const image = document.querySelector('.popup__image');
 const imageDescription = document.querySelector('.popup__image-description');
 
-const elementsList = document.querySelector('.elements-list');
-const elementTemplate = document.querySelector('.elements-template').content;
 
+initialCards.forEach((item) => {
+    const card = new Card(item, '.elements-template');
+    const cardElement = card.generateCard();
+
+    document.querySelector('.elements-list').prepend(cardElement);
+});
 
 // увеличение изображений
-
+/*
 const zoomImage = (imageLink, imageText, zoomBtn) => {
     zoomBtn.addEventListener('click', function () {
         image.src = imageLink;
@@ -41,53 +48,9 @@ const zoomImage = (imageLink, imageText, zoomBtn) => {
         openPopup(popupImage);
     });
 };
+*/
 
-// лайк на картинку
-
-const likeImage = (likeBtn) => {
-    likeBtn.addEventListener('click', function (evt) {
-        evt.target.classList.toggle('element__like_active');
-    });
-};
-
-// удаление карточки
-
-const deleteCard = (deleteBtn) => { 
-    deleteBtn.addEventListener('click', function (event) { 
-        const card = event.target.closest('.element'); 
-        card.remove(); 
-    }); 
-}; 
-
-// создание карточек и добавление на страницу
-
-const renderCards = () => {
-    initialCards.forEach(renderCard);
-};
-
-const renderCard = (data) => {
-    const card = createCard(data);
-    elementsList.prepend(card);
-};
-
-const createCard = ({name, link}) => {
-    const element = elementTemplate.cloneNode(true);
-    element.querySelector('.element__text').textContent = name;
-    element.querySelector('.element__image').src = link;
-    element.querySelector('.element__image').alt = name;
-    const deleteBtn = element.querySelector('.element__delete-button'); // обращение к кнопке удаления
-    const imageBtn = element.querySelector('.element__image'); // обращение к картинке для увеличения
-    
-    likeImage(element.querySelector('.element__like')); // лайк
-    deleteCard(deleteBtn);
-    zoomImage(link, name, imageBtn);
-
-    return element;
-};
-
-renderCards();
-
-// открытие попапов
+// ОТКРЫТИЕ попапов
 
 const openPopup = (popup) => {
     popup.classList.add('popup_opened');
@@ -108,7 +71,7 @@ const openAddCardPopup = () => {
 editBtn.addEventListener('click', handleEditProfile);
 addBtn.addEventListener('click', openAddCardPopup);
 
-// закрытие попапов
+// ЗАКРЫТИЕ попапов
 
 const closePopup = (popup) => {
     popup.classList.remove('popup_opened');
@@ -143,13 +106,13 @@ closeBtns.forEach(item => {
 // сохранение данных, введенных в формы
 
 function submitFormEdit (evt) {
-    evt.preventDefault(); 
+    evt.preventDefault();
     profileJob.textContent = jobInput.value;
     profileName.textContent = nameInput.value;
     closePopup(popupEdit);
 }
 
-formElementEdit.addEventListener('submit', submitFormEdit); 
+formElementEdit.addEventListener('submit', submitFormEdit);
 
 function submitFormAdd (evt) {
     evt.preventDefault();

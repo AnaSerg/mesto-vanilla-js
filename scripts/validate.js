@@ -12,7 +12,7 @@ const hasInvalidInput = (inputList) => {
       return !inputElement.validity.valid;
     });
 };
-  
+
 const toggleButtonState = (inputList, buttonElement, { inactiveButtonClass }, formElement) => {
     if(hasInvalidInput(inputList)) {
         buttonElement.classList.add(inactiveButtonClass);
@@ -20,7 +20,7 @@ const toggleButtonState = (inputList, buttonElement, { inactiveButtonClass }, fo
     } else {
         buttonElement.classList.remove(inactiveButtonClass);
         buttonElement.removeAttribute('disabled');
-    } 
+    }
 };
 
 const showInputError = (formElement, inputElement, errorMessage, { inputErrorClass, errorClass }) => {
@@ -45,7 +45,7 @@ const checkInputValidity = (formElement, inputElement, rest) => {
     }
 };
 
-// Если вводим несоответствующие данные в форму и закрываем попап. 
+// Если вводим несоответствующие данные в форму и закрываем попап.
 // При следующем открытии форма очищается от ошибок.
 
 const resetValidation = (formElement) => {
