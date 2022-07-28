@@ -19,9 +19,10 @@ export class Card {
         this._element = this._getTemplate();
         this._setEventListeners();
 
+        const elementImage = this._element.querySelector('.element__image');
         this._element.querySelector('.element__text').textContent = this._name;
-        this._element.querySelector('.element__image').src = this._link;
-        this._element.querySelector('.element__image').alt = this._name;
+        elementImage.src = this._link;
+        elementImage.alt = this._name;
 
         return this._element;
     }

@@ -3,6 +3,7 @@
     opacity: .2;
     background: #fff;
     color: #000;
+    cursor: auto;
 }
 
 .button_type_submit:hover {

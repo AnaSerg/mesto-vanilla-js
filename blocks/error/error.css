@@ -1,12 +1,12 @@
 .error {
-    margin: 5px 0 13px;
     font-size: 12px;
     line-height: 1.25;
     color: red;
-    min-height: 18px;
     visibility: hidden;
+    display: block;
+    min-height: 30px;
 }
 
 .error:last-of-type {
-    margin-bottom: 31px;
+    margin-bottom: 10px;
 }
