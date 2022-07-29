@@ -1,5 +1,5 @@
 import { Card } from './Сard.js';
-import { initialCards } from './cards.js';
+import { initialCards } from './utils/constants.js';
 import { FormValidator } from './FormValidator.js';
 
 // попапы
