@@ -82,7 +82,6 @@ export const openPopup = (popup) => {
 
 const handleEditProfile = () => {
     formEditValidation.resetValidation();
-    formEditValidation.disableButton();
     openPopup(popupEdit);
     nameInput.value = profileName.textContent;
     jobInput.value = profileJob.textContent;
