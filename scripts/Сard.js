@@ -1,4 +1,4 @@
-import { zoomImage } from './index.js';
+import { zoomImage, openPopup } from './index.js';
 
 export class Card {
     constructor(data, templateSelector) {

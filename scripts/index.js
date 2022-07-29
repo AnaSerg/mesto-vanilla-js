@@ -74,7 +74,7 @@ formAddValidation.enableValidation();
 
 // ОТКРЫТИЕ попапов
 
-const openPopup = (popup) => {
+export const openPopup = (popup) => {
     popup.classList.add('popup_opened');
     // закрытие на Esc
     document.addEventListener('keydown', closeByEsc);
