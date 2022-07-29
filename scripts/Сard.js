@@ -1,8 +1,11 @@
+import { zoomImage } from './index.js';
+
 export class Card {
     constructor(data, templateSelector) {
         this._name = data.name;
         this._link = data.link;
         this._templateSelector = templateSelector;
+        this._zoomImage = zoomImage;
     }
 
     _getTemplate() {
@@ -34,6 +37,10 @@ export class Card {
 
         this._element.querySelector('.element__delete-button').addEventListener('click', () => {
             this._deleteCard();
+        });
+
+        this._element.querySelector('.element__image').addEventListener('click', () => {
+            this._zoomImage(this._name, this._link);
         });
     }
 

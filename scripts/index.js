@@ -31,6 +31,26 @@ const profileName = profile.querySelector('.profile__name');
 const image = document.querySelector('.popup__image');
 const imageDescription = document.querySelector('.popup__image-description');
 
+const config = {
+    formSelector: '.form',
+    inputSelector: '.form__input',
+    submitButtonSelector: '.button_type_submit',
+    inactiveButtonClass: 'button_inactive',
+    inputErrorClass: 'form__input_type_error',
+    errorClass: 'error_active'
+};
+
+// увеличение изображений
+
+export function zoomImage(imageText, imageLink) {
+    image.src = imageLink;
+    image.alt = imageText;
+    imageDescription.textContent = imageText;
+    openPopup(popupImage);
+}
+
+// рендеринг карточек на странице
+
 const renderCards = () => {
     initialCards.forEach(renderCard);
 };
@@ -44,32 +64,13 @@ const renderCard = (data) => {
 
 renderCards();
 
-const config = {
-    formSelector: '.form',
-    inputSelector: '.form__input',
-    submitButtonSelector: '.button_type_submit',
-    inactiveButtonClass: 'button_inactive',
-    inputErrorClass: 'form__input_type_error',
-    errorClass: 'error_active'
-};
+// создание экземпляров класса FormValidator
 
 const formEditValidation = new FormValidator(config, formElementEdit);
 formEditValidation.enableValidation();
 
 const formAddValidation = new FormValidator(config, formElementAdd);
 formAddValidation.enableValidation();
-
-// увеличение изображений
-/*
-const zoomImage = (imageLink, imageText, zoomBtn) => {
-    zoomBtn.addEventListener('click', function () {
-        image.src = imageLink;
-        image.alt = imageText;
-        imageDescription.textContent = imageText;
-        openPopup(popupImage);
-    });
-};
-*/
 
 // ОТКРЫТИЕ попапов
 
