@@ -1,6 +1,7 @@
 import { Card } from './Сard.js';
-import { initialCards } from './utils/constants.js';
+import { initialCards, elementList } from './utils/constants.js';
 import { FormValidator } from './FormValidator.js';
+import { Section } from './components/Section.js';
 
 // попапы
 const popups = document.querySelectorAll('.popup');
@@ -31,8 +32,6 @@ const profileName = profile.querySelector('.profile__name');
 const image = document.querySelector('.popup__image');
 const imageDescription = document.querySelector('.popup__image-description');
 
-const elementList = document.querySelector('.elements-list');
-
 const config = {
     formSelector: '.form',
     inputSelector: '.form__input',
@@ -61,7 +60,8 @@ export function zoomImage(imageText, imageLink) {
 
 // рендеринг карточек на странице
 
-const renderCards = () => {
+
+/*const renderCards = () => {
     initialCards.forEach(renderCard);
 };
 
@@ -70,7 +70,7 @@ const renderCard = (data) => {
     const cardElement = card.generateCard();
 
     elementList.prepend(cardElement);
-};
+};*/
 
 // ОТКРЫТИЕ попапов
 
@@ -133,7 +133,6 @@ function submitFormAdd (evt) {
     renderCard({name: `${textInput.value}`, link: `${imageInput.value}`});
 }
 
-renderCards();
 
 buttonEdit.addEventListener('click', handleEditProfile);
 buttonAdd.addEventListener('click', openAddCardPopup);
@@ -141,3 +140,15 @@ buttonAdd.addEventListener('click', openAddCardPopup);
 formElementEdit.addEventListener('submit', submitFormEdit);
 formElementAdd.addEventListener('submit', submitFormAdd);
 
+const cardsList = new Section({
+    items: initialCards,
+    renderer: (cardItem) => {
+      const card = new Card(cardItem, '.elements-template');
+      const cardElement = card.generateCard();
+
+      cardsList.addItems(cardElement);
+    }
+  }, elementList
+);
+
+cardsList.renderItems();

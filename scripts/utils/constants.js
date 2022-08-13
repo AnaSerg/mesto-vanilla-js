@@ -24,3 +24,5 @@ export const initialCards = [
       link: 'https://images.unsplash.com/photo-1601221018091-03efdfe0ba53?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NDJ8fCVEMCVCMiVEMCVCNSVEMCVCRCVEMCVCNSVEMSU4NiVEMCVCOCVEMSU4RnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60'
     }
 ];
+
+export const elementList = '.elements-list';
