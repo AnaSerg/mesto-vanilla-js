@@ -26,3 +26,4 @@ export const initialCards = [
 ];
 
 export const elementList = '.elements-list';
+export const popup = '.popup';

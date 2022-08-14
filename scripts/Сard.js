@@ -1,11 +1,11 @@
-import { zoomImage, openPopup } from './index.js';
+//import { zoomImage, openPopup } from './index.js';
 
 export class Card {
     constructor(data, templateSelector) {
         this._name = data.name;
         this._link = data.link;
         this._templateSelector = templateSelector;
-        this._zoomImage = zoomImage;
+        //this._zoomImage = zoomImage;
     }
 
     _getTemplate() {

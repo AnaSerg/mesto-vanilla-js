@@ -2,9 +2,10 @@ import { Card } from './Сard.js';
 import { initialCards, elementList } from './utils/constants.js';
 import { FormValidator } from './FormValidator.js';
 import { Section } from './components/Section.js';
+import { Popup } from './components/Popup.js';
+
 
 // попапы
-const popups = document.querySelectorAll('.popup');
 const popupEdit = document.querySelector('.popup_type_edit');
 const popupAdd = document.querySelector('.popup_type_add');
 const popupImage = document.querySelector('.popup_type_big-image');
@@ -49,37 +50,28 @@ formEditValidation.enableValidation();
 const formAddValidation = new FormValidator(config, formElementAdd);
 formAddValidation.enableValidation();
 
+const popupTest = new Popup ('.popup');
+popupTest.setEventListeners();
+
 // увеличение изображений
 
+/*
 export function zoomImage(imageText, imageLink) {
     image.src = imageLink;
     image.alt = imageText;
     imageDescription.textContent = imageText;
     openPopup(popupImage);
-}
-
-// рендеринг карточек на странице
-
-
-/*const renderCards = () => {
-    initialCards.forEach(renderCard);
-};
-
-const renderCard = (data) => {
-    const card = new Card(data, '.elements-template');
-    const cardElement = card.generateCard();
-
-    elementList.prepend(cardElement);
-};*/
+} */
 
 // ОТКРЫТИЕ попапов
 
-export const openPopup = (popup) => {
+/* export const openPopup = (popup) => {
     popup.classList.add('popup_opened');
     // закрытие на Esc
     document.addEventListener('keydown', closeByEsc);
-};
+}; */
 
+/*
 const handleEditProfile = () => {
     formEditValidation.resetValidation();
     openPopup(popupEdit);
@@ -139,6 +131,7 @@ buttonAdd.addEventListener('click', openAddCardPopup);
 
 formElementEdit.addEventListener('submit', submitFormEdit);
 formElementAdd.addEventListener('submit', submitFormAdd);
+*/
 
 const cardsList = new Section({
     items: initialCards,
