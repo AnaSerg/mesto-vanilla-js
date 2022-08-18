@@ -1,11 +1,9 @@
-//import { zoomImage, openPopup } from './index.js';
-
 export class Card {
-    constructor(data, templateSelector) {
+    constructor(data, templateSelector, handleCardClick) {
         this._name = data.name;
         this._link = data.link;
         this._templateSelector = templateSelector;
-        //this._zoomImage = zoomImage;
+        this._handleCardClick = handleCardClick;
     }
 
     _getTemplate() {
@@ -40,7 +38,7 @@ export class Card {
         });
 
         this._element.querySelector('.element__image').addEventListener('click', () => {
-            this._zoomImage(this._name, this._link);
+            this._handleCardClick(this._name, this._link);
         });
     }
 
