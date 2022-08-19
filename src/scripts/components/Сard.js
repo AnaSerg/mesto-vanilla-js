@@ -47,7 +47,7 @@ export class Card {
     }
 
     _deleteCard() {
-        const cardToDelete = this._element.querySelector('.element__delete-button').closest('.element');
-        cardToDelete.remove();
+        this._element.remove();
+        this._element = null;
     }
 }

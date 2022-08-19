@@ -25,23 +25,26 @@ const popupEdit = new PopupWithForm ({popupSelector: '.popup_type_edit', handleF
 const newCardPopup = new PopupWithForm ({
     popupSelector: '.popup_type_add',
     handleFormSubmit: (data) => {
-        createNewCard(data);
+        addNewCard(data);
     }
 });
 
 const userInfo = new UserInfo({profileNameSelector: '.profile__name', profileJobSelector: '.profile__description'});
 
-const createNewCard = (data) => {
+const createCard = (data) => {
     const card = new Card(data, '.elements-template', handleCardClick);
     const cardElement = card.generateCard();
+    return cardElement;
+}
 
-    cardsList.addItems(cardElement);
+const addNewCard = (data) => {
+    cardsList.addItems(createCard(data));
 };
 
 const cardsList = new Section({
     items: initialCards,
     renderer: (data) => {
-        createNewCard(data);
+        addNewCard(data);
     }
   }, elementList
 );

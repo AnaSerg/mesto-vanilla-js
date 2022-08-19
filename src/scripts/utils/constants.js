@@ -26,7 +26,6 @@ export const initialCards = [
 ];
 
 export const elementList = '.elements-list';
-export const popup = '.popup';
 export const buttonEdit = document.querySelector('.button_type_edit');
 export const buttonAdd = document.querySelector('.button_type_add');
 export const formElementEdit = document.querySelector('.form_type_edit');

@@ -54,16 +54,6 @@ export class FormValidator {
         }
     }
 
-    // Если вводим несоответствующие данные в форму и закрываем попап.
-    // При следующем открытии форма очищается от ошибок.
-
-    resetValidation() {
-        const inputs = Array.from(this._formElement.querySelectorAll(this._inputSelector));
-        inputs.forEach((inputElement) => {
-            this._hideInputError(inputElement);
-        });
-    }
-
     _setEventListeners() {
         this._toggleButtonState();
         this._inputList.forEach((inputElement) => {
