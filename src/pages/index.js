@@ -77,7 +77,7 @@ buttonEdit.addEventListener('click', addToProfileInfo);
 formEditValidation.enableValidation();
 formAddValidation.enableValidation();
 
-cardsList.renderItems();
+//cardsList.renderItems();
 
 
 const api = new Api({
