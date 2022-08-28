@@ -8,7 +8,7 @@ export class Api {
         return fetch(`${this._baseUrl}/cards`)
             .then((res) => { res.json()})
             .then((data) => {
-                console.log(data);
+                console.log('Получилось');
             })
             .catch(() => {
                 console.log('Не удалось загрузить карточки');
