@@ -77,15 +77,9 @@ buttonEdit.addEventListener('click', addToProfileInfo);
 formEditValidation.enableValidation();
 formAddValidation.enableValidation();
 
-//cardsList.renderItems();
+cardsList.renderItems();
 
 
-const api = new Api({
-    baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-49',
-    headers: {
-      authorization: '2cee6aa2-b4a3-48c5-9c04-a35e285f1434',
-      'Content-Type': 'application/json'
-    }
-  });
+const api = new Api('https://mesto.nomoreparties.co/v1/cohort-49');
 
 api.getInitialCards();
