@@ -1,21 +1,37 @@
 export class Api {
-    constructor(baseUrl) {
-        this._baseUrl = baseUrl;
+    constructor({ baseUrl, headers }) {
+      this._baseUrl = baseUrl;
+      this._headers = headers;
+    }
+  
+    _checkResponse(res) {
+      if (res.ok) {
+        console.log("Ура!");
+      }
+      return Promise.reject(`Ошибка: ${res.status}`);
+    }
+    
+    _handleResponse(res) {
+        if (res.ok) {
+            return res.json();
+        } else {
+            Promise.reject(`Ошибка: ${res.status}`);
+        }
     }
 
     getInitialCards() {
         return fetch(`${this._baseUrl}/cards`, {
-                headers: {
-                    authorization: '2cee6aa2-b4a3-48c5-9c04-a35e285f1434',
-                    'Content-Type': 'application/json'
-                }
-            })
-            .then((res) => { res.json()})
-            .then((data) => {
-                console.log(data);
-            })
-            .catch(() => {
-                console.log('Не удалось загрузить карточки');
-            })
+          method: 'GET',
+          headers: this._headers,
+        })
+        .then(this._handleResponse);
+    }
+
+    getUserInfo() {
+        return fetch(`${this._baseUrl}/users/me`, {
+          //method: 'GET',
+          headers: this._headers,
+        })
+        .then(this._handleResponse);
     }
 }

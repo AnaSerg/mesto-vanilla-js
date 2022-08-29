@@ -1,6 +1,5 @@
 import '../pages/index.css';
-import { initialCards,
-        elementList,
+import {elementList,
         buttonEdit,
         buttonAdd,
         formElementEdit,
@@ -43,7 +42,6 @@ const addNewCard = (data) => {
 };
 
 const cardsList = new Section({
-    items: initialCards,
     renderer: (data) => {
         addNewCard(data);
     }
@@ -77,9 +75,27 @@ buttonEdit.addEventListener('click', addToProfileInfo);
 formEditValidation.enableValidation();
 formAddValidation.enableValidation();
 
-cardsList.renderItems();
+//cardsList.renderItems();
 
+const api = new Api ({
+    baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-49',
+    headers: {
+      authorization: '2cee6aa2-b4a3-48c5-9c04-a35e285f1434',
+      'Content-Type': 'application/json'
+    }
+  })
 
-const api = new Api('https://mesto.nomoreparties.co/v1/cohort-49');
+// отображение данных пользователя и карточек, полученных с сервера
 
-api.getInitialCards();
+Promise.all([api.getInitialCards(), api.getUserInfo()])
+    .then(([cards, user]) => {
+        cards.forEach((card) => {
+            const {name, link} = card;
+            addNewCard({name, link});
+        });
+        const {name, about} = user;
+        userInfo.setUserInfo({name, about});
+    })
+    .catch(() => {
+        console.log('Не удалось отобразить карточки');
+    })
