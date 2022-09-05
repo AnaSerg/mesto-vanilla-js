@@ -20,13 +20,13 @@ import { PopupWithForm } from '../scripts/components/PopupWithForm.js';
 import { UserInfo } from '../scripts/components/UserInfo.js';
 
 // отображение данных пользователя и карточек, полученных с сервера
+let userId;
 
 Promise.all([api.getInitialCards(), api.getUserInfo()])
     .then(([cards, user]) => {
-        cards.reverse();
-        cards.forEach((card) => {
-            addNewCard(card);
-        });
+        userId = user._id;
+        cardsList.renderItems(cards.reverse());
+
         userInfo.setUserInfo(user);
         userInfo.setAvatarInfo(user);
     })
@@ -50,7 +50,7 @@ const newCardPopup = new PopupWithForm ({
             cardsList.addItems(createCard(card));
         }
         catch (err) {
-            throw new Error(err);
+            console.log(err);
         }
         finally {
             newCardPopup.handleLoading(false);
@@ -67,7 +67,7 @@ const popupEdit = new PopupWithForm ({
             userInfo.setUserInfo(profile);
         }
         catch (err) {
-            throw new Error(err);
+            console.log(err);
         }
         finally {
             popupEdit.handleLoading(false);
@@ -84,7 +84,7 @@ const changeAvatarPopup = new PopupWithForm ({
             userInfo.setAvatarInfo(avatar);
         }
         catch (err) {
-            throw new Error(err);
+            console.log(err);
         }
         finally {
             changeAvatarPopup.handleLoading(false);
@@ -94,7 +94,12 @@ const changeAvatarPopup = new PopupWithForm ({
 
 const userInfo = new UserInfo({profileNameSelector: '.profile__name', profileJobSelector: '.profile__description', profileAvatarSelector: '.profile__avatar'});
 
-const cardsList = new Section(elementList);
+const cardsList = new Section({
+    renderer: (data) => {
+        addNewCard(data);
+    }
+  }, elementList
+);
 
 // Создание карточек
 
@@ -107,7 +112,7 @@ const addNewCard = (data) => {
 };
 
 const createCard = (data) => {
-    const card = new Card(data, "c8b5ac5006641523760cec2e", '.elements-template', {handleDelete: () => {
+    const card = new Card(data, userId, '.elements-template', {handleDelete: () => {
         popupConfirm.open();
         popupConfirm.handleSubmit(() => {
             api.deleteCard(data._id)
