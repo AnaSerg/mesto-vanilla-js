@@ -28,7 +28,6 @@ Promise.all([api.getInitialCards(), api.getUserInfo()])
         cardsList.renderItems(cards.reverse());
 
         userInfo.setUserInfo(user);
-        userInfo.setAvatarInfo(user);
     })
     .catch((err) => {
         console.log(err);
@@ -83,7 +82,7 @@ const changeAvatarPopup = new PopupWithForm ({
         try {
             changeAvatarPopup.handleLoading(true);
             const avatar = await api.sendAvatarInfo(data);
-            userInfo.setAvatarInfo(avatar);
+            userInfo.setUserInfo(avatar);
             changeAvatarPopup.close();
         }
         catch (err) {
