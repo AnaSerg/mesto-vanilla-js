@@ -48,6 +48,7 @@ const newCardPopup = new PopupWithForm ({
             newCardPopup.handleLoading(true);
             const card = await api.sendNewCard(data);
             cardsList.addItems(createCard(card));
+            newCardPopup.close();
         }
         catch (err) {
             console.log(err);
@@ -65,6 +66,7 @@ const popupEdit = new PopupWithForm ({
             popupEdit.handleLoading(true);
             const profile = await api.sendUserInfo(data);
             userInfo.setUserInfo(profile);
+            popupEdit.close();
         }
         catch (err) {
             console.log(err);
@@ -82,6 +84,7 @@ const changeAvatarPopup = new PopupWithForm ({
             changeAvatarPopup.handleLoading(true);
             const avatar = await api.sendAvatarInfo(data);
             userInfo.setAvatarInfo(avatar);
+            changeAvatarPopup.close();
         }
         catch (err) {
             console.log(err);
@@ -158,10 +161,9 @@ const openPopupAdd = () => {
 };
 
 const addToProfileInfo = () => {
-    popupEdit.open();
     const userData = userInfo.getUserInfo();
-    nameInput.value = userData.name;
-    jobInput.value = userData.about;
+    popupEdit.setInputValues(userData);
+    popupEdit.open();
 };
 
 const changeAvatar = () => {
