@@ -12,8 +12,8 @@ export class FormValidator {
         this._buttonElement = this._formElement.querySelector(this._submitButtonSelector);
     }
 
-    _hasInvalidInput(inputList) {
-        return inputList.some((inputElement) => {
+    _hasInvalidInput() {
+        return this._inputList.some((inputElement) => {
           return !inputElement.validity.valid;
         });
     }
