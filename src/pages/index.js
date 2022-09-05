@@ -153,7 +153,7 @@ const createCard = (data) => {
 }
 
 const openPopupAdd = () => {
-    formAddValidation.disableButton();
+    formAddValidation.resetValidation();
     newCardPopup.open();
 };
 
@@ -165,7 +165,7 @@ const addToProfileInfo = () => {
 };
 
 const changeAvatar = () => {
-    formAvatarValidation.disableButton();
+    formAvatarValidation.resetValidation();
     changeAvatarPopup.open();
 }
 
